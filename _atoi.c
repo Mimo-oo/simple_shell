@@ -13,7 +13,7 @@ int in_interactive(info_m *info)
 
 /**
  * is_delimiter - checks if character is a delimeter
- * @c: the char to check
+ * @b: the char to check
  * @delimit: the delimeter string
  * Return: 1 if true, 0 if false
  */
@@ -27,7 +27,7 @@ int is_delimiter(char b, char *delimit)
 
 /**
  * _isalpha - checks for alphabets
- * @c: The character to input
+ * @d: The character to input
  * Return: 1 if d is an alphabet, otherwise 0
  */
 
