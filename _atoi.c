@@ -25,3 +25,17 @@ int is_delimiter(char b, char *delimit)
 	return (0);
 }
 
+/**
+ * _isalpha - checks for alphabets
+ * @c: The character to input
+ * Return: 1 if d is an alphabet, otherwise 0
+ */
+
+int _isalpha(int d)
+{
+	if ((d >= 'a' && d <= 'z') || (d >= 'A' && d <= 'Z'))
+		return (1);
+	else
+		return (0);
+}
+
