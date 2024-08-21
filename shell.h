@@ -12,3 +12,8 @@
 #include <fcntl.h>
 #include <errno.h>
 
+/* for buffers */
+#define READ_BUF_SIZE 1024
+#define WRITE_BUFFER_SIZE 1024
+#define BUFFER_FLUSH -1
+
