@@ -70,6 +70,6 @@ int _atoi(char *s)
 	else
 		out = result;
 
-	return (out);
+	return (oupt);
 }
 
