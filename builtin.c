@@ -79,3 +79,21 @@ int _chmycd(info_m *info)
 	return (0);
 }
 
+/**
+ * _needhelp - changes the current directory 
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ *  Return: Always 0
+ */
+int _needhelp(info_m *info)
+{
+	char **arg_arrays;
+
+	arg_arrays = info->argv;
+	_puts("help call works. Function not yet implemented \n");
+	if (0)
+		_puts(*arg_arrays); 
+	return (0);
+}
+
+
