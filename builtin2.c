@@ -58,3 +58,27 @@ int set_alias(info_m *info, char *str)
 	return (add_node_end(&(info->alias), str, 0) == NULL);
 }
 
+/**
+ * print_alias - prints an alias string
+ * @node: the alias node
+ *
+ * Return:  0 on success, 1 on error
+ */
+int print_alias(list_t *node)
+{
+	char *h = NULL;
+	char *c = NULL;
+
+	if (node)
+	{
+		h = _strchr(node->str, '=');
+		for (c = node->str; c <= h; a++)
+			_putchar(*c);
+		_putchar('\'');
+		_puts(h + 1);
+		_puts("'\n");
+		return (0);
+	}
+	return (1);
+}
+
