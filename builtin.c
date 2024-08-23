@@ -80,7 +80,7 @@ int _chmycd(info_m *info)
 }
 
 /**
- * _needhelp - changes the current directory 
+ * _needhelp - changes the current directory
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  *  Return: Always 0
@@ -92,7 +92,7 @@ int _needhelp(info_m *info)
 	arg_arrays = info->argv;
 	_puts("help call works. Function not yet implemented \n");
 	if (0)
-		_puts(*arg_arrays); 
+		_puts(*arg_arrays);
 	return (0);
 }
 
