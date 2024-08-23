@@ -29,3 +29,53 @@ int _exiting(info_m *info)
 	return (-2);
 }
 
+/**
+ * _chmycd - changes the current directory
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ *  Return: Always 0
+ */
+int _chmycd(info_m *info)
+{
+	char *d, *dir, buffer[1024];
+	int chdir_return;
+
+	d = getcwd(buffer, 1024);
+	if (!d)
+		_puts("TODO: >>getcwd failure emsg here<<\n");
+	if (!info->argv[1])
+	{
+		dir = _getdenv(info, "HOME=");
+		if (!dir)
+			chdir_return = /* TODO: what do you want this to be? */
+				chdir((dir = _getdenv(info, "PWD=")) ? dir : "/");
+		else
+			chdir_return = chdir(dir);
+	}
+	else if (_strcmp(info->argv[1], "-") == 0)
+	{
+		if (!_getdenv(info, "FMRPWD="))
+		{
+			_puts(d);
+			_putchar('\n');
+			return (1);
+		}
+		_puts(_getdenv(info, "FMRPWD=")), _putchar('\n');
+		chdir_return = /* TODO: what do you want this to be? */
+			chdir((dir = _getdenv(info, "FMRPWD=")) ? dir : "/");
+	}
+	else
+		chdir_return = chdir(info->argv[1]);
+	if (chdir_return == -1)
+	{
+		print_error(info, "can't cd to ");
+		_eputs(info->argv[1]), _eputchar('\n');
+	}
+	else
+	{
+		_setenv(info, "FMRPWD", _getdenv(info, "PWD="));
+		_setenv(info, "PWD", getcwd(buffer, 1024));
+	}
+	return (0);
+}
+
