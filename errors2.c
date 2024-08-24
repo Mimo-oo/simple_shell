@@ -28,3 +28,21 @@ int _error_atoi(char *s)
 	return (results);
 }
 
+/**
+ * print_error - prints an error message
+ * @info: the parameter & return info struct
+ * @estrr: string containing specified error type
+ * Return: 0 if no numbers in string, converted number otherwise
+ *        -1 on error
+ */
+void print_error(info_m *info, char *estrr)
+{
+	_eputs(info->fname);
+	_eputs(": ");
+	print_d(info->line_count, STDERR_FILENO);
+	_eputs(": ");
+	_eputs(info->argv[0]);
+	_eputs(": ");
+	_eputs(estrr);
+}
+
