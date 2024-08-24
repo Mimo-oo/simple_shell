@@ -41,3 +41,26 @@ int _dputchar(char c)
 	return (1);
 }
 
+/**
+ * _putfdesc - writes the character c to given file description
+ * @c: The character to print
+ * @fd: The file descriptor to write to
+ *
+ * Return: 1 on success
+ * On error, -1 is returned and error no is set appropriately.
+ */
+int _putfdesc(char c, int fd)
+{
+	static int i;
+	static char buf[WRITE_BUFFER_SIZE];
+
+	if (c == BUFFER_FLUSH || i >= WRITE_BUFFER_SIZE)
+	{
+		write(fd, buf, i);
+		i = 0;
+	}
+	if (c != BUFFER_FLUSH)
+		buf[i++] = c;
+	return (1);
+}
+
