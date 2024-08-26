@@ -42,48 +42,48 @@ ssize_t input_buff(info_m *info, char **buf, size_t *len)
 	return (r);
 }
 
-}
-
-
 /**
- * input_buff - buffers chained commands
+ * get_inputs - gets a line minus the newline
  * @info: parameter struct
- * @buf: address of buffer
- * @len: address of len var
  *
  * Return: bytes read
  */
-ssize_t input_buff(info_m *info, char **buf, size_t *len)
+ssize_t get_inputs(info_m *info)
 {
+	static char *buf; 
+	static size_t i, j, len;
 	ssize_t r = 0;
-	size_t len_p = 0;
+	char **buf_p = &(info->arg), *p;
 
-	if (!*len)
+	_putchar(BUFFER_FLUSH);
+	r = input_buff(info, &buf, &len);
+	if (r == -1) 
+		return (-1);
+	if (len)
 	{
-		free(*buf);
-		*buf = NULL;
-		signal(SIGINT, sigint_Handler);
-#if USE_GETLINE
-		r = getline(buf, &len_p, stdin);
-#else
-		r = _getline(info, buf, &len_p);
-#endif
-		if (r > 0)
+		j = i;
+		p = buf + i; 
+
+		check_chain(info, buf, &j, i, len);
+		while (j < len)
 		{
-			if ((*buf)[r - 1] == '\n')
-			{
-				(*buf)[r - 1] = '\0'; /* remove trailing newline */
-				r--;
-			}
-			info->linecount_flag = 1;
-			removes_comment(*buf);
-			build_history_list(info, *buf, info->histcount++);
-			{
-				*len = r;
-				info->cmd_buf = buf;
-			}
+			if (is_chain(info, buf, &j))
+				break;
+			j++;
 		}
+
+		i = j + 1;
+		if (i >= len)
+		{
+			i = len = 0;
+			info->cmd_buf_type = CMD_NORM;
+		}
+
+		*buf_p = p;
+		return (_strlen(p));
 	}
+
+	*buf_p = buf; 
 	return (r);
 }
 
