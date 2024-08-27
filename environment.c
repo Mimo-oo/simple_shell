@@ -48,7 +48,7 @@ int _myownsetenv(info_m *info)
 		_eputs("Incorrect number of arguments\n");
 		return (1);
 	}
-	if (_setenv(info, info->argv[1], info->argv[2]))
+	if (_setenvir(info, info->argv[1], info->argv[2]))
 		return (0);
 	return (1);
 }
