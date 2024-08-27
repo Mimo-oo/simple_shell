@@ -8,7 +8,7 @@
  */
 int _myenv(info_m *info)
 {
-	print_list_str(info->env);
+	print__list_str(info->env);
 	return (0);
 }
 
