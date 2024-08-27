@@ -69,7 +69,7 @@ int _myownunsetenv(info_m *info)
 		return (1);
 	}
 	for (i = 1; i <= info->argc; i++)
-		_unsetenv(info, info->argv[i]);
+		_unsetenvv(info, info->argv[i]);
 
 	return (0);
 }
