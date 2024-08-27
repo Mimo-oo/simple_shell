@@ -88,14 +88,14 @@ ssize_t get_inputs(info_m *info)
 }
 
 /**
- * read_buf - reads a buffer
+ * read_buff - reads a buffer
  * @info: parameter struct
  * @buf: buffer
  * @i: size
  *
  * Return: r on success
  */
-ssize_t read_buf(info_m *info, char *buf, size_t *i)
+ssize_t read_buff(info_m *info, char *buf, size_t *i)
 {
 	ssize_t r = 0;
 
