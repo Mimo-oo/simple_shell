@@ -87,11 +87,11 @@ int rd_history(info_m *info)
 		if (buf[i] == '\n')
 		{
 			buf[i] = 0;
-			build_history_list(info, buf + last, linecount++);
+			bd_history_list(info, buf + last, linecount++);
 			last = i + 1;
 		}
 	if (last != i)
-		build_history_list(info, buf + last, linecount++);
+		bd_history_list(info, buf + last, linecount++);
 	free(buf);
 	info->histcount = linecount;
 	while (info->histcount-- >= HIST_MAX)
