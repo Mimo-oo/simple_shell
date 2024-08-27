@@ -100,3 +100,24 @@ int rd_history(info_m *info)
 	return (info->histcount);
 }
 
+/**
+ * bd_history_list - adds entry to a history linked list
+ * @info: Structure containing potential arguments.
+ * @buf: buffer
+ * @linecount: the history linecount, histcount
+ *
+ * Return: Always 0
+ */
+int bd_history_list(info_m *info, char *buf, int linecount)
+{
+	list_t *node = NULL;
+
+	if (info->history)
+		node = info->history;
+	add_node_end(&node, buf, linecount);
+
+	if (!info->history)
+		info->history = node;
+	return (0);
+}
+
