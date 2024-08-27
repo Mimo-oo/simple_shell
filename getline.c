@@ -17,7 +17,7 @@ ssize_t input_buff(info_m *info, char **buf, size_t *len)
 	{
 		free(*buf);
 		*buf = NULL;
-		signal(SIGINT, sigint_Handler);
+		signal(SIGINT, sigint_handler);
 #if USE_GETLINE
 		r = getline(buf, &len_p, stdin);
 #else
@@ -27,7 +27,7 @@ ssize_t input_buff(info_m *info, char **buf, size_t *len)
 		{
 			if ((*buf)[r - 1] == '\n')
 			{
-				(*buf)[r - 1] = '\0'; /* remove trailing newline */
+				(*buf)[r - 1] = '\0';
 				r--;
 			}
 			info->linecount_flag = 1;
