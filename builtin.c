@@ -13,16 +13,16 @@ int _exiting(info_m *info)
 
 	if (info->argv[1])  /* If there is an exit arguement */
 	{
-		checkexit = _err_atoi(info->argv[1]);
+		checkexit = _error_atoi(info->argv[1]);
 		if (checkexit == -1)
 		{
 			info->status = 2;
 			print_error(info, "Illegal number: ");
 			_eputs(info->argv[1]);
-			_eputchar('\n');
+			_dputchar('\n');
 			return (1);
 		}
-		info->err_num = _err_atoi(info->argv[1]);
+		info->err_num = _error_atoi(info->argv[1]);
 		return (-2);
 	}
 	info->err_num = -1;
@@ -30,7 +30,7 @@ int _exiting(info_m *info)
 }
 
 /**
- * _chmycd - changes the current directory
+ * _chmycd - changes the current directory 
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  *  Return: Always 0
@@ -61,7 +61,7 @@ int _chmycd(info_m *info)
 			return (1);
 		}
 		_puts(_getdenv(info, "FMRPWD=")), _putchar('\n');
-		chdir_return = /* TODO: what do you want this to be? */
+		chdir_return = /* TODO: what should this be? */
 			chdir((dir = _getdenv(info, "FMRPWD=")) ? dir : "/");
 	}
 	else
@@ -69,7 +69,7 @@ int _chmycd(info_m *info)
 	if (chdir_return == -1)
 	{
 		print_error(info, "can't cd to ");
-		_eputs(info->argv[1]), _eputchar('\n');
+		_eputs(info->argv[1]), _dputchar('\n');
 	}
 	else
 	{
@@ -80,7 +80,7 @@ int _chmycd(info_m *info)
 }
 
 /**
- * _needhelp - changes the current directory
+ * _needhelp - changes the current directory 
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  *  Return: Always 0
@@ -92,8 +92,7 @@ int _needhelp(info_m *info)
 	arg_arrays = info->argv;
 	_puts("help call works. Function not yet implemented \n");
 	if (0)
-		_puts(*arg_arrays);
+		_puts(*arg_arrays); 
 	return (0);
 }
-
 
