@@ -173,4 +173,47 @@ char *convert_numbers(long int, int, int);
 void removes_comment(char *);
 
 /* for _builtin.c */
+int _exiting(info_m *);
+int _chmycd(info_m *);
+int _needhelp(info_m *);
+
+/* for _builtin1.c */
+int _thehistory (info_m *);
+int _myownalias(info_m *);
+
+/*for _getline.c */
+ssize_t get_inputs(info_m *);
+int _getline(info_m *, char **, size_t *);
+void sigint_handler(int);
+
+/* for _getinfo.c */
+void clear_infos(info_m *);
+void set_infos(info_m *, char **);
+void free_infos(info_m *, int);
+
+/* for _environ.c */
+char *_getdenv(info_m *, const char *);
+int _myenv(info_m *);
+int _myownsetenv (info_m *);
+int _myownunsetenv (info_m *);
+int populates_env_list(info_m *);
+
+/* for _getdenv.c */
+char **get_environment(info_m *);
+int _unsetenvv(info_m *, char *);
+int _setenvir(info_m *, char *, char *);
+
+/* for _history.c */
+char *g_history_file(info_m *info);
+int write_history(info_m *info);
+int rd_history(info_m *info);
+int bd_history_list(info_m *info, char *buf, int linecount);
+int rnumber_history(info_m *info);
+
+/* for _lists.c */
+list_t *add_node(list_t **, const char *, int);
+list_t *add_node_end(list_t **, const char *, int);
+size_t print__list_str(const list_t *);
+int delete_node_at_index(list_t **, unsigned int);
+void frees_list(list_t **);
 
