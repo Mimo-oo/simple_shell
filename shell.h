@@ -183,6 +183,7 @@ int _myownalias(info_m *);
 
 /*for _getline.c */
 ssize_t get_inputs(info_m *);
+ssize_t input_buff(info_m *, char **, size_t *);
 int _getline(info_m *, char **, size_t *);
 void sigint_handler(int);
 
