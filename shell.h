@@ -130,4 +130,47 @@ int _dputchar(char);
 int _putfdesc(char c, int fd);
 int _putsfdesc(char *str, int fd);
 
+/* for _string.c */
+int _strlen(char *);
+int _strcmp(char *, char *);
+char *starts_with(const char *, const char *);
+char *_strcat(char *, char *);
+
+/* for _string1.c */
+char *_strcpy(char *, char *);
+char *_strdup(const char *);
+void _puts(char *);
+int _putchar(char);
+
+/* for _exits.c */
+char *_strncpy(char *, char *, int);
+char *_strncat(char *, char *, int);
+char *_strchr(char *, char);
+
+/* for _tokenizer.c */
+char **strtow(char *, char *);
+char **strtow2(char *, char);
+
+/* for _realloc.c */
+char *_memset(char *, char, unsigned int);
+void f_free(char **);
+void *_realloc(void *, unsigned int, unsigned int);
+
+/* for _memory.c */
+int b_free(void **);
+
+/* for _atoi.c */
+int in_interactive(info_m *);
+int is_delimiter(char, char *);
+int _isalpha(int);
+int _atoi(char *);
+
+/* for _errors1.c */
+int _error_atoi(char *);
+void print_error(info_m *, char *);
+int print_desc(int, int);
+char *convert_numbers(long int, int, int);
+void removes_comment(char *);
+
+/* for _builtin.c */
 
