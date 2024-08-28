@@ -41,3 +41,23 @@ int i_cmd(info_m *info, char *path)
 	return (0);
 }
 
+/**
+ * duplicate_chars - duplicates characters
+ * @pathstr: the PATH string
+ * @start: starting index
+ * @stop: stopping index
+ *
+ * Return: pointer to new buffer
+ */
+char *duplicate_chars(char *pathstr, int start, int stop)
+{
+	static char buf[1024];
+	int i = 0, m = 0;
+
+	for (m = 0, i = start; i < stop; i++)
+		if (pathstr[i] != ':')
+			buf[m++] = pathstr[i];
+	buf[m] = 0;
+	return (buf);
+}
+
