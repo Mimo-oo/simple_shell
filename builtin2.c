@@ -32,7 +32,7 @@ int unset_alias(info_m *info, char *str)
 	i = *h;
 	*h = 0;
 	retrn = delete_node_at_index(&(info->alias),
-		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
+		get_node_index(info->alias, node_starts_with_p(info->alias, str, -1)));
 	*h = i;
 	return (retrn);
 }
@@ -110,7 +110,7 @@ int _myownalias(info_m *info)
 		if (h)
 			set_alias(info, info->argv[i]);
 		else
-			print_alias(node_starts_with(info->alias, info->argv[i], '='));
+			print_alias(node_starts_with_p(info->alias, info->argv[i], '='));
 	}
 
 	return (0);
