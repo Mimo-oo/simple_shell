@@ -1,27 +1,26 @@
-#include <stdio.h>
+#include "shell.h"
 
 /**
  * main - entry point
- * @ac: argc count
- * @av: argv count
+ * @ac: arg count
+ * @av: arg vector
  *
  * Return: 0 on success, 1 on error
  */
-
 int main(int ac, char **av)
 {
 	info_m info[] = { INFO_INITIALIZE };
-	int fdisc = 2;
+	int fd = 2;
 
 	asm ("mov %1, %0\n\t"
 		"add $3, %0"
-		: "=r" (fdisc)
-		: "r" (fdisc));
+		: "=r" (fd)
+		: "r" (fd));
 
 	if (ac == 2)
 	{
 		fd = open(av[1], O_RDONLY);
-		if (fdisc == -1)
+		if (fd == -1)
 		{
 			if (errno == EACCES)
 				exit(126);
@@ -30,16 +29,17 @@ int main(int ac, char **av)
 				_eputs(av[0]);
 				_eputs(": 0: Can't open ");
 				_eputs(av[1]);
-				_eputchar('\n');
-				_eputchar(BUFFER_FLUSH);
+				_dputchar('\n');
+				_dputchar(BUFFER_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfd = fdisc;
+		info->readfd = fd;
 	}
-	populate_env_list(info);
-	read_history(info);
+	populates_env_list(info);
+	rd_history(info);
 	hsh(info, av);
 	return (EXIT_SUCCESS);
 }
+
