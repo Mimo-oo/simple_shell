@@ -1,3 +1,5 @@
+#include "shell.h"
+
 /**
  * g_history_file - gets the history files
  * @info: parameter struct
