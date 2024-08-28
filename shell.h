@@ -217,3 +217,19 @@ size_t print__list_str(const list_t *);
 int delete_node_at_index(list_t **, unsigned int);
 void frees_list(list_t **);
 
+/* for _lists1.c */
+size_t list_lgt(const list_t *);
+char **list_to_strings(list_t *);
+size_t print_list(const list_t *);
+list_t *node_starts_with_p(list_t *, char *, char);
+ssize_t get_node_index(list_t *, list_t *);
+
+/* for _vars.c */
+int is_chain(info_m *, char *, size_t *);
+void checks_chain(info_m *, char *, size_t *, size_t, size_t);
+int replace_alias(info_m *);
+int replace_vars(info_m *);
+int replaces_strings(char **, char *);
+
+#endif
+
