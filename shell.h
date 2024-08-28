@@ -86,4 +86,48 @@ typedef struct passinfo
 	list_t *history;
 	list_t *alias;
 	char **environ;
+	int env_changed;
+	int status;
+	char **cmd_buf;
+	int cmd_buf_type;
+	int readfd;
+	int histcount;
+} info_m;
+
+#define INFO_INITIALIZE \
+{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
+	0, 0, 0}
+
+/**
+ *struct builtin - contains a builtin string and related function
+ *@type: the builtin command flag
+ *@func: the function
+ */
+typedef struct builtin
+{
+	char *type;
+	int (*func)(info_m *);
+} builtin_table;
+
+
+/* for _shloop.c */
+int hsh(info_m *, char **);
+int find_builtins(info_m *);
+void find_cmd(info_m *);
+void fork_cmd(info_m *);
+
+/* for _parser.c */
+int i_cmd(info_m *, char *);
+char *duplicate_chars(char *, int, int);
+char *finds_path(info_m *, char *, char *);
+
+/* loophsh.c */
+int loophsh(char **);
+
+/* for _errors.c */
+void _eputs(char *);
+int _dputchar(char);
+int _putfdesc(char c, int fd);
+int _putsfdesc(char *str, int fd);
+
 
