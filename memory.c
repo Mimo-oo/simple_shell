@@ -61,3 +61,46 @@ char *duplicate_chars(char *pathstr, int start, int stop)
 	return (buf);
 }
 
+/**
+ * finds_path - finds this command in the PATH string
+ * @info: the info struct
+ * @pathstr: the PATH string
+ * @cmd: the cmd to find
+ *
+ * Return: full path of command if found or NULL
+ */
+char *finds_path(info_m *info, char *pathstr, char *cmd)
+{
+	int i = 0, currt_pos = 0;
+	char *path;
+
+	if (!pathstr)
+		return (NULL);
+	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
+	{
+		if (i_cmd(info, cmd))
+			return (cmd);
+	}
+	while (1)
+	{
+		if (!pathstr[i] || pathstr[i] == ':')
+		{
+			path = duplicate_chars(pathstr, currt_pos, i);
+			if (!*path)
+				_strcat(path, cmd);
+			else
+			{
+				_strcat(path, "/");
+				_strcat(path, cmd);
+			}
+			if (i_cmd(info, path))
+				return (path);
+			if (!pathstr[i])
+				break;
+			currt_pos = i;
+		}
+		i++;
+	}
+	return (NULL);
+}
+
