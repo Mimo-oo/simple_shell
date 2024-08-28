@@ -77,3 +77,45 @@ int find_builtins(info_m *info)
 	return (built_in_ret);
 }
 
+/**
+ * find_cmd - finds a command in PATH
+ * @info: the parameter & return info struct
+ *
+ * Return: void
+ */
+void find_cmd(info_m *info)
+{
+	char *path = NULL;
+	int i, k;
+
+	info->path = info->argv[0];
+	if (info->linecount_flag == 1)
+	{
+		info->line_count++;
+		info->linecount_flag = 0;
+	}
+	for (i = 0, k = 0; info->arg[i]; i++)
+		if (!is_delimiter(info->arg[i], " \t\n"))
+			k++;
+	if (!k)
+		return;
+
+	path = finds_path(info, _getdenv(info, "PATH="), info->argv[0]);
+	if (path)
+	{
+		info->path = path;
+		fork_cmd(info);
+	}
+	else
+	{
+		if ((in_interactive(info) || _getdenv(info, "PATH=")
+			|| info->argv[0][0] == '/') && i_cmd(info, info->argv[0]))
+			fork_cmd(info);
+		else if (*(info->arg) != '\n')
+		{
+			info->status = 127;
+			print_error(info, "not found\n");
+		}
+	}
+}
+
